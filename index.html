@@ -1766,14 +1766,434 @@
     z-index: 0;
   }
 
-  /* Responsive */
+  /* ===================== MOBILE — premium responsive ===================== */
   @media (max-width: 900px) {
-    .s1-right, .s3-right, .s5-right { display: none; }
-    .s1-left, .s3-left, .s5-left { padding: 60px 40px; }
-    .services-grid { grid-template-columns: 1fr; max-height: 80vh; overflow-y: auto; }
-    .impact-grid { grid-template-columns: repeat(2, 1fr); }
-    .contact-items { gap: 28px; padding: 24px; }
-    .corner-tl, .corner-tr, .corner-bl, .corner-br { display: none; }
+    /* Slide container: vertical stacking with native scroll */
+    .slide-inner {
+      flex-direction: column !important;
+      overflow-y: auto !important;
+      overflow-x: hidden !important;
+      -webkit-overflow-scrolling: touch;
+      align-items: stretch !important;
+      justify-content: flex-start !important;
+    }
+    /* When slide content overflows, scroll naturally from the top */
+    .s2 .slide-inner,
+    .s4 .slide-inner,
+    .s6 .slide-inner,
+    .s7 .slide-inner {
+      justify-content: flex-start !important;
+      align-items: center !important;
+    }
+
+    /* Hide vertical brand mark (overflows) */
+    .s1-vertical { display: none !important; }
+
+    /* Keep editorial corners but smaller & tighter */
+    .corner-tl, .corner-tr, .corner-bl, .corner-br {
+      width: 38px !important;
+      height: 38px !important;
+    }
+    .corner-tl { top: 14px !important; left: 14px !important; }
+    .corner-tr { top: 14px !important; right: 14px !important; }
+    .corner-bl { bottom: 14px !important; left: 14px !important; }
+    .corner-br { bottom: 14px !important; right: 14px !important; }
+
+    /* Top chrome */
+    #slide-title-display {
+      top: 18px;
+      left: 22px;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+    }
+    #slide-title-display::before { width: 18px; }
+    #slide-counter {
+      top: 18px;
+      right: 22px;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+    }
+
+    /* Bottom nav — bigger tap targets, safe area */
+    #nav {
+      bottom: max(18px, env(safe-area-inset-bottom));
+      gap: 14px;
+      padding: 6px 14px;
+    }
+    .nav-btn { width: 44px; height: 44px; font-size: 18px; }
+    .dot { width: 7px; height: 7px; }
+    .dot.active { width: 22px; }
+
+    /* ---------- SHARED ELEMENTS ---------- */
+    .slide-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      margin-bottom: 16px;
+      gap: 10px;
+    }
+    .slide-label::before { width: 18px; }
+
+    .slide-h1 {
+      font-size: 36px !important;
+      line-height: 1.05 !important;
+      letter-spacing: -0.02em !important;
+      margin-bottom: 22px !important;
+      max-width: none !important;
+    }
+    .slide-body {
+      font-size: 15px !important;
+      line-height: 1.7 !important;
+      margin-bottom: 32px !important;
+      max-width: none !important;
+    }
+
+    /* ---------- SLIDE 1: COVER ---------- */
+    .s1 .slide-inner { padding: 0; }
+    .s1-right {
+      width: 100% !important;
+      height: 50vh !important;
+      min-height: 360px;
+      max-height: 480px;
+      order: 1;
+      flex: 0 0 auto !important;
+      position: relative;
+      overflow: hidden;
+    }
+    .s1-right::before {
+      width: 100%;
+      height: 60%;
+      bottom: 0;
+      right: 0;
+      top: auto;
+      background: linear-gradient(180deg, transparent 0%, rgba(217,30,122,0.06) 50%, rgba(139,21,48,0.18) 100%);
+    }
+    .s1-photo {
+      height: 100% !important;
+      width: auto !important;
+      max-width: none !important;
+      top: 0;
+      bottom: 0;
+      right: auto !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      object-position: center bottom !important;
+      filter: drop-shadow(0 10px 26px rgba(139,21,48,0.18)) !important;
+    }
+    .s1-left {
+      flex: 1 1 auto !important;
+      padding: 36px 26px 110px !important;
+      width: 100%;
+      order: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .s1-logo {
+      height: 56px;
+      margin-bottom: 24px;
+      align-self: flex-start;
+    }
+    .s1-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      margin-bottom: 16px;
+      gap: 10px;
+    }
+    .s1-eyebrow::before, .s1-eyebrow::after { width: 18px; }
+    .s1-title {
+      font-size: 40px !important;
+      line-height: 1.04 !important;
+      margin-bottom: 22px !important;
+    }
+    .s1-tagline {
+      font-size: 15px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      max-width: none;
+    }
+    .s1-cta {
+      padding: 16px 30px;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+    }
+
+    /* ---------- SLIDE 2: VISION ---------- */
+    .s2 .slide-inner {
+      padding: 90px 26px 110px !important;
+      text-align: center !important;
+    }
+    .s2 .slide-h1 { font-size: 34px !important; }
+    .vision-pills { gap: 8px; }
+    .pill {
+      padding: 10px 18px;
+      font-size: 9px;
+      letter-spacing: 0.14em;
+    }
+
+    /* ---------- SLIDE 3: FOUNDER ---------- */
+    .s3 .slide-inner { padding: 0 !important; }
+    .s3-right {
+      width: 100% !important;
+      height: 48vh !important;
+      min-height: 340px;
+      max-height: 460px;
+      flex: 0 0 auto !important;
+      order: 1;
+      padding: 60px 24px 24px !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, transparent 0%, rgba(217,30,122,0.04) 100%);
+    }
+    .s3-portrait-frame {
+      width: 240px !important;
+      height: 320px !important;
+    }
+    .s3-portrait-frame::before { top: 12px; left: 12px; }
+    .s3-portrait-frame::after {
+      width: 56px;
+      height: 56px;
+      bottom: -10px;
+      right: -10px;
+    }
+    .s3-photo-tag { display: none; }
+    .s3-left {
+      flex: 1 1 auto !important;
+      padding: 36px 26px 110px !important;
+      width: 100%;
+      order: 2;
+    }
+    .s3-name {
+      font-size: 38px !important;
+      line-height: 1.0;
+      margin-bottom: 12px;
+    }
+    .s3-title-role {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      max-width: none;
+    }
+    .s3-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: none;
+    }
+    .s3-stats { gap: 20px; flex-wrap: wrap; }
+    .stat + .stat::before { left: -10px; top: 4px; }
+    .stat-num { font-size: 32px; }
+    .stat-label { font-size: 9px; letter-spacing: 0.2em; }
+
+    /* ---------- SLIDE 4: SERVICES ---------- */
+    .s4 .slide-inner {
+      padding: 80px 22px 130px !important;
+    }
+    .s4 .slide-label { align-self: center; }
+    .s4 .slide-h1 {
+      font-size: 26px !important;
+      line-height: 1.15 !important;
+      text-align: center;
+      margin-bottom: 18px !important;
+    }
+    .services-grid {
+      grid-template-columns: 1fr !important;
+      max-width: 100% !important;
+      width: 100%;
+      margin-top: 8px;
+      gap: 1px;
+    }
+    .service-card { padding: 22px 22px; min-height: auto; }
+    .service-num { font-size: 12px; margin-bottom: 12px; }
+    .service-title { font-size: 19px; margin-bottom: 8px; line-height: 1.2; }
+    .service-desc { font-size: 13.5px; line-height: 1.55; }
+
+    /* ---------- SLIDE 5: PROCESS ---------- */
+    .s5 .slide-inner { padding: 0 !important; }
+    .s5-left {
+      flex: 1 1 auto !important;
+      padding: 90px 26px 30px !important;
+      width: 100%;
+      order: 1;
+    }
+    .s5-left .slide-h1 {
+      font-size: 32px !important;
+      line-height: 1.1 !important;
+    }
+    .process-steps { margin-top: 24px; max-width: 100%; }
+    .process-step { gap: 18px; padding: 22px 0; }
+    .process-step:hover { padding-left: 0; }
+    .step-num { font-size: 24px; width: 44px; }
+    .step-content h4 { font-size: 18px; margin-bottom: 6px; }
+    .step-content p {
+      font-size: 13.5px;
+      line-height: 1.6;
+      max-width: none;
+    }
+    .s5-right {
+      width: 100% !important;
+      flex: 0 0 auto !important;
+      padding: 40px 32px 110px !important;
+      order: 2;
+      background: linear-gradient(180deg, rgba(217,30,122,0.03) 0%, rgba(217,30,122,0.08) 100%);
+    }
+    .s5-right::before { display: none; }
+    .big-quote-mark { font-size: 100px; margin-bottom: 14px; }
+    .big-quote-text {
+      font-size: 21px;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+    .big-quote-attr { font-size: 10px; letter-spacing: 0.22em; }
+
+    /* ---------- SLIDE 6: IMPACT ---------- */
+    .s6 .slide-inner { padding: 90px 22px 110px !important; }
+    .s6 .slide-h1 {
+      font-size: 28px !important;
+      line-height: 1.15 !important;
+      text-align: center;
+      margin-bottom: 22px !important;
+    }
+    .impact-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      margin: 16px 0 40px;
+      gap: 1px;
+    }
+    .impact-cell { padding: 30px 16px; }
+    .impact-num {
+      font-size: 44px;
+      margin-bottom: 10px;
+    }
+    .impact-label {
+      font-size: 8.5px;
+      letter-spacing: 0.2em;
+      line-height: 1.45;
+    }
+    .testimonial-strip { padding: 0 32px; }
+    .testimonial-strip::before, .testimonial-strip::after { font-size: 56px; }
+    .testimonial-strip::before { top: 14px; }
+    .testimonial-strip::after { bottom: -4px; }
+    .testimonial-text {
+      font-size: 17px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .testimonial-source { font-size: 9.5px; letter-spacing: 0.22em; }
+
+    /* ---------- SLIDE 7: CONTACT ---------- */
+    .s7 .slide-inner { padding: 90px 24px 120px !important; }
+    .contact-logo { height: 56px; margin-bottom: 32px; }
+    .contact-title {
+      font-size: 32px !important;
+      line-height: 1.1 !important;
+      margin-bottom: 16px;
+    }
+    .contact-sub {
+      font-size: 14.5px;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+    .contact-items {
+      flex-direction: column !important;
+      gap: 22px;
+      padding: 26px 24px;
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 360px;
+    }
+    .contact-item-label { font-size: 9px; letter-spacing: 0.28em; }
+    .contact-item-value { font-size: 14.5px; }
+    .contact-cta-group {
+      flex-direction: column !important;
+      gap: 12px;
+      width: 100%;
+      max-width: 320px;
+    }
+    .btn-primary, .btn-secondary {
+      padding: 16px 32px;
+      font-size: 11px;
+      width: 100%;
+      text-align: center;
+      letter-spacing: 0.16em;
+    }
+    .social-row {
+      margin-top: 36px;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .social-row-label {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      margin-bottom: 6px;
+      gap: 14px;
+    }
+    .social-row-label::after { width: 24px; }
+    .social-link { width: 46px; height: 46px; }
+    .social-link svg { width: 18px; height: 18px; }
+
+    /* ---------- BOOKING MODAL: full screen ---------- */
+    #booking-overlay { padding: 0 !important; }
+    .booking-modal {
+      max-width: none;
+      max-height: 100vh;
+      height: 100vh;
+      width: 100vw;
+      padding: 72px 24px 32px !important;
+      clip-path: none !important;
+      border-radius: 0;
+      overflow-y: auto;
+    }
+    .booking-modal::before, .booking-modal::after { display: none; }
+    .booking-close { top: 16px; right: 16px; width: 42px; height: 42px; font-size: 22px; }
+    .booking-title { font-size: 28px; }
+    .booking-sub { font-size: 13.5px; margin-bottom: 24px; line-height: 1.55; }
+    .booking-form { grid-template-columns: 1fr !important; gap: 16px; }
+    .form-field input,
+    .form-field select,
+    .form-field textarea { padding: 14px 14px; font-size: 15px; }
+    .booking-submit { padding: 16px 28px; }
+    .booking-footer { font-size: 11px; }
+
+    /* ---------- TWEAKS PANEL: bottom sheet ---------- */
+    #tweaks-panel {
+      bottom: 0 !important;
+      right: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      border-radius: 0 !important;
+      clip-path: none !important;
+      max-height: 70vh;
+      overflow-y: auto;
+      transform: translateY(100%) !important;
+    }
+    #tweaks-panel.open { transform: translateY(0) !important; }
+    .tweaks-body { max-height: none; }
+
+    /* Hide BG glow orbs on mobile (already small, removes clutter) */
+    .glow-orb { opacity: 0.5; }
+  }
+
+  /* Extra-small phones (≤380px) */
+  @media (max-width: 380px) {
+    .s1-title { font-size: 34px !important; }
+    .s1-left { padding: 30px 22px 110px !important; }
+    .s3-name { font-size: 32px !important; }
+    .contact-title { font-size: 26px !important; }
+    .impact-cell { padding: 24px 12px; }
+    .impact-num { font-size: 36px; }
+    .service-card { padding: 22px 18px; }
+    .corner-tl, .corner-tr, .corner-bl, .corner-br { display: none !important; }
+  }
+
+  /* Landscape phones — compact */
+  @media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+    .s1-right { height: 100vh !important; min-height: 0; max-height: none; }
+    .s3-right { height: 70vh !important; min-height: 280px; }
+    .s3-portrait-frame { width: 200px !important; height: 260px !important; }
+    .s5-right { padding: 40px 32px 80px !important; }
   }
 </style>
 </head>
